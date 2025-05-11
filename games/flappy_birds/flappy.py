@@ -238,3 +238,24 @@ class FlappyBirds:
 
             pg.draw.rect(self.window, self.black, (x + border, y + border, width - (border * 2), height - (border * 2)))
             self.window.blit(text, (text_x, text_y))
+
+    # Função para reiniciar o jogo e as variáveis
+    def restart(self) :
+        self.bird_pos = [100, 100]
+        self.gravity = 5
+        self.vertical_speed = 0
+        self.score = 0
+        self.last_random_height_for_pipe = 0
+        self.bird_passing_through_obstacle = False
+
+        self.pipe_1_pos = [400, self.new_height_for_pipe()]
+        self.pipe_2_pos = [800, self.new_height_for_pipe()]
+        self.pipe_3_pos = [1200, self.new_height_for_pipe()]
+        self.pipe_4_pos = [1600, self.new_height_for_pipe()]
+        self.pipe_5_pos = [2000, self.new_height_for_pipe()]
+        self.background_1_pos = [0, 0]
+        self.background_2_pos = [2120, 0]
+        self.ground_1_pos = [0, 634]
+        self.ground_2_pos = [1010, 634]
+        self.ground_3_pos = [2020, 634]
+        self.in_play = True
