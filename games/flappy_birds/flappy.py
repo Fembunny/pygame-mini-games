@@ -102,3 +102,11 @@ class FlappyBirds:
 
         # Imagem do passáro (1)
         self.window.blit(self.bird, (self.bird_pos[0], self.bird_pos[1]))
+
+    # Fução responsáve pelo comando de movimentação e de restart
+    def move(self, key) :
+        if key == 'space' :
+            # Para conseguir movimentar o passáro para cima (eixo y) é preciso colocar uma velocidade negativa
+            self.vertical_speed = -10
+        elif key == 'r' :
+            self.restart()
