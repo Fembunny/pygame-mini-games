@@ -103,10 +103,20 @@ class FlappyBirds:
         # Imagem do passáro (1)
         self.window.blit(self.bird, (self.bird_pos[0], self.bird_pos[1]))
 
-    # Fução responsáve pelo comando de movimentação e de restart
+    # Função responsável pelo comando de movimentação e de ‘restart’
     def move(self, key) :
         if key == 'space' :
             # Para conseguir movimentar o passáro para cima (eixo y) é preciso colocar uma velocidade negativa
             self.vertical_speed = -10
         elif key == 'r' :
             self.restart()
+
+    # Função responsável por definir alturas aleatórias para os canos sem repetir
+    def new_height_for_pipe(self) :
+        new_height = random.randint(6, 10) * 50               # Altura nova aleatória
+
+        while self.last_random_height_for_pipe == new_height :      # While para impedir que a altura nova seja igual à última altura criada
+            new_height = random.randint(6, 10) * 50
+
+        self.last_random_height_for_pipe = new_height               # Atualizando a altura da última peça com a nova
+        return new_height
