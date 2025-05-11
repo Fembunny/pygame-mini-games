@@ -107,7 +107,7 @@ class FlappyBirds:
     def move(self, key) :
         if key == 'space' :
             # Para conseguir movimentar o passáro para cima (eixo y) é preciso colocar uma velocidade negativa
-            self.vertical_speed = -10
+            self.vertical_speed = -7
         elif key == 'r' :
             self.restart()
 
@@ -194,3 +194,15 @@ class FlappyBirds:
         pg.draw.rect(self.window, self.black,  (x, y, width, height), border)
         pg.draw.rect(self.window, self.white,  (x + border, y + border, width - (border * 2), height - (border * 2)), border)
         self.window.blit(text, (text_x, text_y))
+
+    # Função verificar se esta acontecendo uma colisão
+    def collision(self) :
+        # Verificar se o passáro esta numa posição (x e y) que possui canos
+        if self.pipe_1_pos[0] < self.bird_pos[0] + 51 and self.pipe_1_pos[0] + 123 > self.bird_pos[0] :
+            # Verificar se as bordas da imagem do passaro estão em contato com o cano
+            if self.bird_pos[1] + 36 > self.pipe_1_pos[1] or self.bird_pos[1] < self.pipe_1_pos[1] - 200 :
+                self.in_play = False    # Para o jogo
+
+        # Verifica se o passáro colidiu com o chão
+        if self.bird_pos[1] + 36 > 634 :
+            self.in_play = False        # Para o jogo
