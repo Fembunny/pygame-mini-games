@@ -26,6 +26,7 @@ def play_flappy() :
 
         # Game
         flappy.clock.tick(60)
+        flappy.clear_window()
 
         flappy.last_click_status = mouse_input
 

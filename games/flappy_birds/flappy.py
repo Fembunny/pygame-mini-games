@@ -72,3 +72,7 @@ class FlappyBirds:
                 right_button = True
 
         return left_button, center_button, right_button                     # Retorna os status dos botões (clicados ou não)
+
+    # Função para limpar e desenhar a tela do jogo
+    def clear_window(self):
+        pg.draw.rect(self.window, self.white, (0, 0, self.window.get_width(), self.window.get_height()))
