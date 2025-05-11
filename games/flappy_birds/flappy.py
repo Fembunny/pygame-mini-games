@@ -18,7 +18,7 @@ class FlappyBirds:
         # Mouse variables
         self.last_click_status = (False, False, False)                          # Verificar quando o botão esquerdo do mouse foi clicado
         self.gravity = 5                                                        # Variável para definir a gravidade do jogo (5)
-        self.in_play = False                                                    # Variável para verificar se esta rodando
+        self.in_play = True                                                     # Variável para verificar se esta rodando
 
         self.bird_pos = [100, 100]                                              # Variável para a posição do bird no jogo
         self.vertical_speed = 0                                                 # Velocidade vertical do bird (verificar se ele está a subir ou a descer)
@@ -123,7 +123,6 @@ class FlappyBirds:
 
     # Função responsável por dar movimento a todos os elementos do jogo (canos, grama, background e passáro)
     def movement(self) :
-        print(self.in_play)
         if self.in_play :  # Se o jogo foi iniciado
             # Canos - movimentados 1.2 pixels para a esquerda a cada frame
             self.pipe_1_pos[0] -= 1.2
@@ -175,7 +174,7 @@ class FlappyBirds:
             if self.bird_passing_through_obstacle :                       # Adiciona mais um ponto
                 self.score += 1
 
-        self.bird_passing_through_obsacle = False                         # Não está a passar
+            self.bird_passing_through_obstacle = False                         # Não está a passar
 
         # Variáveis para desenhar o placar
         border = 5
@@ -201,8 +200,41 @@ class FlappyBirds:
         if self.pipe_1_pos[0] < self.bird_pos[0] + 51 and self.pipe_1_pos[0] + 123 > self.bird_pos[0] :
             # Verificar se as bordas da imagem do passaro estão em contato com o cano
             if self.bird_pos[1] + 36 > self.pipe_1_pos[1] or self.bird_pos[1] < self.pipe_1_pos[1] - 200 :
-                self.in_play = False    # Para o jogo
+                self.in_play = False        # Para o jogo
+                self.gravity = 0            # Parar a queda
+                self.vertical_speed = 0
 
-        # Verifica se o passáro colidiu com o chão
+                # Verifica se o passáro colidiu com o chão
         if self.bird_pos[1] + 36 > 634 :
             self.in_play = False        # Para o jogo
+            self.gravity = 0            # Parar a queda
+            self.vertical_speed = 0
+
+
+    # Função que desenha o botao ‘restart’
+    def restart_button(self, mouse) :
+        if self.in_play == False:                                           # se não estiver a rodar
+            text = self.font.render('Restart', 1, self.white)  # Escrevendo o texto de restart
+            # Calculo para que o texto fique centralizado
+            text_x = (self.window.get_width() / 2)  - (text.get_width() / 2)
+            text_y = (self.window.get_height() / 2) - (text.get_height() / 2)
+
+            border = 5
+            height = text.get_height() + 50
+            width = text.get_width() + 50
+            x = (self.window.get_width() / 2) -  (width / 2)
+            y = (self.window.get_height() / 2) - (height / 2)
+
+            # Verificar se o mouse está em cima do botão
+            if x <= mouse[0][0] <= x + width and y <= mouse[0][1] <= y + height :
+                hover_color = tuple(min(rgb + 50, 255) for rgb in self.orange)
+                pg.draw.rect(self.window, hover_color, (x, y, width, height))
+
+                if mouse[2][0] :  # Se o botão for clicado
+                    self.restart()
+
+            else :
+                pg.draw.rect(self.window, self.orange, (x, y, width, height))
+
+            pg.draw.rect(self.window, self.black, (x + border, y + border, width - (border * 2), height - (border * 2)))
+            self.window.blit(text, (text_x, text_y))

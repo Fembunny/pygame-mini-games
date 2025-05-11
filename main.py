@@ -15,10 +15,10 @@ def play_flappy() :
                 quit()
             if event.type == pg.KEYDOWN :
                 flappy.move(pg.key.name(event.key))
+
                 if pg.key.name(event.key) == 'escape':
                     return main()
 
-        # Mouse info
         mouse_position = pg.mouse.get_pos()
         mouse_input = pg.mouse.get_pressed()
         mouse_click = flappy.mouse_has_clicked(mouse_input)
@@ -31,6 +31,7 @@ def play_flappy() :
         flappy.movement()
         flappy.scoreboard()
         flappy.collision()
+        flappy.restart_button(mouse)
 
         flappy.last_click_status = mouse_input
 
