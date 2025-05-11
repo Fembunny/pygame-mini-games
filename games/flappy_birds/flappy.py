@@ -56,3 +56,19 @@ class FlappyBirds:
         self.pipe       = pg.transform.scale(pipe,       ( 123, 600))
         self.pipe_usd   = pg.transform.scale(pipe_usd,   ( 123, 600))
 
+    # Função para verificar qual botão do mouse foi clicado
+    def mouse_has_clicked(self, input) :
+        if self.last_click_status == input :
+            return False, False, False
+        else :                                                              # Se um botão foi clicado
+            left_button = False
+            center_button = False
+            right_button = False
+            if self.last_click_status[0] == False and input[0] == True :    # Verificar botão esquerdo
+                left_button = True
+            if self.last_click_status[1] == False and input[1] == True :    # Verificar botão do meio
+                center_button = True
+            if self.last_click_status[2] == False and input[2] == True :    # Verificar botão da esquerda
+                right_button = True
+
+        return left_button, center_button, right_button                     # Retorna os status dos botões (clicados ou não)

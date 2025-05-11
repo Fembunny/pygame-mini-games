@@ -26,12 +26,6 @@ def play_flappy() :
 
         # Game
         flappy.clock.tick(60)
-        flappy.clear_window()
-        flappy.board()
-        flappy.movement()
-        flappy.scoreboard()
-        flappy.collision()
-        flappy.restart_button(mouse)
 
         flappy.last_click_status = mouse_input
 
