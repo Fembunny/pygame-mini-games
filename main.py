@@ -29,6 +29,7 @@ def play_flappy() :
         flappy.clear_window()
         flappy.board()
         flappy.movement()
+        flappy.scoreboard()
 
         flappy.last_click_status = mouse_input
 

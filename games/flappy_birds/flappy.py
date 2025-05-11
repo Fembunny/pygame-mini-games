@@ -123,6 +123,7 @@ class FlappyBirds:
 
     # Função responsável por dar movimento a todos os elementos do jogo (canos, grama, background e passáro)
     def movement(self) :
+        print(self.in_play)
         if self.in_play :  # Se o jogo foi iniciado
             # Canos - movimentados 1.2 pixels para a esquerda a cada frame
             self.pipe_1_pos[0] -= 1.2
@@ -164,3 +165,32 @@ class FlappyBirds:
         if self.vertical_speed <= 5 :
             self.vertical_speed += self.gravity / 15
         self.bird_pos[1] += self.vertical_speed
+
+    # Função que desenha e atualiza o campo da pontuação
+    def scoreboard(self) :
+        # Se o passáro conseguir passar pelo cano nessas circunstâncias
+        if self.pipe_1_pos[0] < self.bird_pos[0] + 51 and self.pipe_1_pos[0] + 123 > self.bird_pos[0]:
+            self.bird_passing_through_obstacle = True                     # Está a passar
+        else :
+            if self.bird_passing_through_obstacle :                       # Adiciona mais um ponto
+                self.score += 1
+
+        self.bird_passing_through_obsacle = False                         # Não está a passar
+
+        # Variáveis para desenhar o placar
+        border = 5
+        x = 1100
+        y = 50
+        height = 100
+        width = 150
+
+        text = self.font.render(str(self.score), 1, self.white)  # Escrevendo o valor da pontuação
+        # Calculo para que o texto fique centralizado
+        text_x = (x + (width / 2) - (text.get_width() / 2))
+        text_y = (y + (height / 2) - (text.get_height() / 2))
+
+        # Desenhando o quadrado e as bordas
+        pg.draw.rect(self.window, self.orange, (x, y, width, height))
+        pg.draw.rect(self.window, self.black,  (x, y, width, height), border)
+        pg.draw.rect(self.window, self.white,  (x + border, y + border, width - (border * 2), height - (border * 2)), border)
+        self.window.blit(text, (text_x, text_y))
