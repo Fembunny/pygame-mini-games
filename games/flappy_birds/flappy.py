@@ -120,3 +120,47 @@ class FlappyBirds:
 
         self.last_random_height_for_pipe = new_height               # Atualizando a altura da última peça com a nova
         return new_height
+
+    # Função responsável por dar movimento a todos os elementos do jogo (canos, grama, background e passáro)
+    def movement(self) :
+        if self.in_play :  # Se o jogo foi iniciado
+            # Canos - movimentados 1.2 pixels para a esquerda a cada frame
+            self.pipe_1_pos[0] -= 1.2
+            self.pipe_2_pos[0] -= 1.2
+            self.pipe_3_pos[0] -= 1.2
+            self.pipe_4_pos[0] -= 1.2
+            self.pipe_5_pos[0] -= 1.2
+
+            if self.pipe_1_pos[0] <= -123 :  # Verificar se o primeiro tudo esta fora da tela
+                # Alternando as posições (x e y) dos tubos para a esquerda
+                self.pipe_1_pos[0] = self.pipe_2_pos[0]
+                self.pipe_1_pos[1] = self.pipe_2_pos[1]
+                self.pipe_2_pos[0] = self.pipe_3_pos[0]
+                self.pipe_2_pos[1] = self.pipe_3_pos[1]
+                self.pipe_3_pos[0] = self.pipe_4_pos[0]
+                self.pipe_3_pos[1] = self.pipe_4_pos[1]
+                self.pipe_4_pos[0] = self.pipe_5_pos[0]
+                self.pipe_4_pos[1] = self.pipe_5_pos[1]
+                self.pipe_5_pos[0] = 1877                           # Novo cano que precisa ser adicionado (eixo x) a direita
+                self.pipe_5_pos[1] = self.new_height_for_pipe()     # Chamando a função para a altura aleatória
+
+            # Background - movimentado 1.2 pixels para esquerda a cada frame
+            self.background_1_pos[0] -= 1.2
+            self.background_2_pos[0] -= 1.2
+            if self.background_1_pos[0] <= -2120 :  # Verifica se ele saiu da tela
+                self.background_1_pos[0] = 0
+                self.background_2_pos[0] = 2120
+
+            # Grama - movimentada 1.2 pixels para a esquerda a cada frame
+            self.ground_1_pos[0] -= 1.2
+            self.ground_2_pos[0] -= 1.2
+            self.ground_3_pos[0] -= 1.2
+            if self.ground_1_pos[0] <= -1010 :  # verifica se saiu da tela
+                self.ground_1_pos[0] = 0
+                self.ground_2_pos[0] = 1010
+                self.ground_3_pos[0] = 2020
+
+        # Passáro - atualizando a velocidade com limite de 5
+        if self.vertical_speed <= 5 :
+            self.vertical_speed += self.gravity / 15
+        self.bird_pos[1] += self.vertical_speed
