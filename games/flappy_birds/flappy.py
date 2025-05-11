@@ -76,3 +76,29 @@ class FlappyBirds:
     # Função para limpar e desenhar a tela do jogo
     def clear_window(self):
         pg.draw.rect(self.window, self.white, (0, 0, self.window.get_width(), self.window.get_height()))
+
+    # Função responsável por desenhar cada imagem na tela do jogo conforme a sua posição
+    def board(self) :
+        # Imagem de plano de fundo (2)
+        self.window.blit(self.background, (self.background_1_pos[0], self.background_1_pos[1]))
+        self.window.blit(self.background, (self.background_2_pos[0], self.background_2_pos[1]))
+
+        # Imagem dos canos (5)
+        self.window.blit(self.pipe,     (self.pipe_1_pos[0], self.pipe_1_pos[1]))
+        self.window.blit(self.pipe_usd, (self.pipe_1_pos[0], self.pipe_1_pos[1] - 800))
+        self.window.blit(self.pipe,     (self.pipe_2_pos[0], self.pipe_2_pos[1]))
+        self.window.blit(self.pipe_usd, (self.pipe_2_pos[0], self.pipe_2_pos[1] - 800))
+        self.window.blit(self.pipe,     (self.pipe_3_pos[0], self.pipe_3_pos[1]))
+        self.window.blit(self.pipe_usd, (self.pipe_3_pos[0], self.pipe_3_pos[1] - 800))
+        self.window.blit(self.pipe,     (self.pipe_4_pos[0], self.pipe_4_pos[1]))
+        self.window.blit(self.pipe_usd, (self.pipe_4_pos[0], self.pipe_4_pos[1] - 800))
+        self.window.blit(self.pipe,     (self.pipe_5_pos[0], self.pipe_5_pos[1]))
+        self.window.blit(self.pipe_usd, (self.pipe_5_pos[0], self.pipe_5_pos[1] - 800))
+
+        # Imagem da grama (3)
+        self.window.blit(self.ground, (self.ground_1_pos[0], self.ground_1_pos[1]))
+        self.window.blit(self.ground, (self.ground_2_pos[0], self.ground_2_pos[1]))
+        self.window.blit(self.ground, (self.ground_3_pos[0], self.ground_3_pos[1]))
+
+        # Imagem do passáro (1)
+        self.window.blit(self.bird, (self.bird_pos[0], self.bird_pos[1]))
