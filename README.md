@@ -28,7 +28,7 @@ Um projeto feito com Python e Pygame que reúne dois minigames clássicos: Tetri
     │       └── tetris/.py  
     │       
     ├── menu/   
-    │    └── menu.py
+    │    └── button.py
     │
     ├── main.py     
     └── README.md          
