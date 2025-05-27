@@ -24,6 +24,9 @@ Um projeto feito com Python e Pygame que reúne dois minigames clássicos: Tetri
     ├── games/      
     │   └── flappy_bird/        
     │       └── flappy.py
+    │   └── snake_game/        
+    │       └── cobrinha.py
+    │       └── window.py
     │   └── tetris/     
     │       └── tetris/.py  
     │       
