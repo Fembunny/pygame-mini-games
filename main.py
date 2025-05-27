@@ -60,9 +60,9 @@ def main():
         menu_rect = menu_text.get_rect(center=(640, 280))
 
         # Chamando a classe e criando os botões
-        tetris_button = Button(pos=(640, 350), text_input="Tetris", font=get_font(30), base_color="#d7fcd4", hovering_color="black")
-        flappy_button = Button(pos=(640, 410), text_input="Flappy-Birds", font=get_font(30), base_color="#d7fcd4", hovering_color="White")
-        quit_button = Button(pos=(640, 470), text_input="Quit", font=get_font(30), base_color="#d7fcd4", hovering_color="White")
+        tetris_button = Button(pos=(640, 350), text_input="Tetris", font=get_font(30), base_color="black", hovering_color="White")
+        flappy_button = Button(pos=(640, 410), text_input="Flappy-Birds", font=get_font(30), base_color="black", hovering_color="White")
+        quit_button = Button(pos=(640, 470), text_input="Quit", font=get_font(30), base_color="black", hovering_color="White")
 
         screen.blit(menu_text, menu_rect)
 
